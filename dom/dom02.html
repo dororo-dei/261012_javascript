@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 02 - 웹 요소의 내용 수정</title>
+  </head>
+  <body>
+    <!-- 웹 요소의 내용 수정 -->
+    <button onclick="innerTxt()">innerText로 표시하기</button>
+    <button onclick="innerHm()">innerHTML로 표시하기</button>
+    <h1>현재 시각:</h1>
+    <div id="current">
+      <!-- js 출력 -->
+    </div>
+    <script>
+      //   const current = document.querySelector("#current"); // 통합 사용 가능 메서드
+      const current = document.getElementById("current"); // id 를 넣는 메서드
+      //   요소명.innerText = 내용
+      //   요소명.innerHTML = 내용
+      const now = new Date();
+      console.log(now);
+      //   innerTxt() 함수
+      function innerTxt() {
+        // 실행 코드를 객체 안에 삽입
+        // console.log("확인");
+        current.innerText = now;
+        // current.innerText = `<strong>${now}</strong>`; // <- 백틱 및 태그까지 출력을 한다는 특징이 있다
+        // <strong>Mon Oct 19 2026 10:46:56 GMT+0900 (한국 표준시)</strong>
+      }
+      function innerHm() {
+        // current.innerHTML = now;
+        current.innerHTML = `<strong>${now}</strong>`; // <- 안에 글자만 출력한다
+        // Mon Oct 19 2026 10:47:21 GMT+0900 (한국 표준시)
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 06 — 이벤트 위임과 DOM 요소 변경·삭제</title>
+    <style>
+      img {
+        cursor: pointer;
+      }
+      .imgbox {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .imgbox img {
+        width: 50px;
+      }
+      .imgbox img.on {
+        border: 3px solid #eee;
+      }
+      button {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="menu">
+      <li>intro company</li>
+      <li>intro product</li>
+      <li>costomer service center</li>
+    </ul>
+    <div id="result">
+      <!-- selected text -->
+    </div>
+    <!-- selected image -->
+    <img src="../images/cup-1.png" alt="redcup" id="big" />
+    <div class="imgbox">
+      <img src="../images/cup-1.png" alt="redcup" />
+      <img src="../images/cup-2.png" alt="bluecup" />
+    </div>
+    <ul id="todo">
+      <li>study<button>delete</button></li>
+      <li>exercise<button>delete</button></li>
+      <li>cleaning<button>delete</button></li>
+    </ul>
+    <script>
+      const menuE = document.getElementById("menu");
+      const result = document.getElementById("result");
+
+      menuE.addEventListener("click", (e) => {
+        console.log(e.target.innerText);
+        result.innerHTML = `<p>selected menu : <span>${e.target.innerText}</span></p>`;
+      });
+
+      // selected image
+      // const imgBox = document.querySelector(".imgbox");
+      const big = document.querySelector("#big");
+      // imgBox.addEventListener("click", (e) => {
+      //   console.log(e.target);
+      //   big.src = e.target.src;
+      // });
+
+      // querySelectorAll
+      const imgE = document.querySelectorAll(".imgbox img");
+      imgE.forEach((item, i) => {
+        item.addEventListener("click", () => {
+          big.src = item.src;
+        });
+      });
+
+      const todo = document.getElementById("todo");
+      todo.addEventListener("click", (e) => {
+        console.log(e.target.tagName);
+        if (e.target.tagName === "BUTTON") {
+          e.target.parentElement.remove();
+          // console.log(e.target.parentElement);
+        }
+      });
+    </script>
+  </body>
+</html>

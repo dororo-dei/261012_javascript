@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트03 - 이벤트 change</title>
+    <style>
+      .todo {
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .todo.completed {
+        color: gray;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>오늘 할 일</h2>
+    <ul>
+      <li class="todo"><input type="checkbox" />청소하기</li>
+      <li class="todo"><input type="checkbox" />장보기</li>
+      <li class="todo"><input type="checkbox" />운동하기</li>
+      <li class="todo"><input type="checkbox" />자바스크립트 복습하기</li>
+    </ul>
+    <script>
+      const todos = document.querySelectorAll(".todo"); // 똑같은 이름을 가진 class를 다 선택
+      console.log(todos); // NodeList (배열처럼 담긴다)
+      todos.forEach((todo, index) => {
+        // console.log(todo,index);
+        const checkBox = todo.querySelector("input");
+        console.log(checkBox);
+        checkBox.addEventListener("change", () => {
+          console.log(checkBox.checked);
+          if (checkBox.checked) {
+            todo.classList.add("completed");
+          } else {
+            todo.classList.remove("completed");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

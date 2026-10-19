@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 03 - HTML 속성 가져오기 및 수정하기</title>
+  </head>
+  <body>
+    <!-- 속성 가져오거나 수정하기 메서드 -->
+    <a href="https://www.naver.com">네이버</a>
+    <script>
+      // 속성 가져오는 메서드
+      // 기본형 getAttribute("속성명")
+      const aEl = document.querySelector("a");
+      //   console.log(aEl);
+      const hrefE = aEl.getAttribute("href");
+      console.log(hrefE);
+      //   속성을 수정하는 메서드
+      //   기본형 : setAtturibute("속성명", "값")
+      aEl.setAttribute("href", "https://www.google.com");
+      console.log(aEl);
+      aEl.innerText = "구글";
+      aEl.setAttribute("target", "_blank");
+      aEl.setAttribute("title", "구글로 이동");
+      aEl.setAttribute("class", "link");
+      aEl.setAttribute("id", "id");
+    </script>
+  </body>
+</html>
