@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 07 - CRUD 할 일 관리</title>
+    <link rel="stylesheet" href="css/crud.css" />
+    <script src="js/crud.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>오늘의 할 일</h1>
+      <!-- 할 일 입력 영역 -->
+      <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="할 일을 입력하세요" />
+        <button type="submit">추가</button>
+      </form>
+      <!-- 할 일 목록이 출력되는 영역 -->
+      <ul id="taskList">
+        <!-- js출력 -->
+         <!-- <li>
+            <span class="task-text"></span>
+         </li> 라는 것을 js로 생성중 (36번 확인) -->
+      </ul>
+      <p id="count">전체 0개 / 완료 0개</p>
+    </div>
+  </body>
+</html>
