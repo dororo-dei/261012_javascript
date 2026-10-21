@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>forEach() · classList · index - 탭 메뉴 구현</title>
+    <style>
+      .tab-btn {
+        padding: 10px;
+        cursor: pointer;
+        border: 1px solid #26b4be;
+        background-color: rgb(177, 253, 253);
+      }
+
+      .tab-btn.active {
+        border-color: blueviolet;
+        background-color: rgb(221, 186, 255);
+      }
+
+      .tab-content {
+        display: none;
+        border: 1px solid #ccc;
+        padding: 15px;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 탭 버튼 -->
+    <button class="tab-btn">탭 1</button>
+    <button class="tab-btn">탭 2</button>
+    <button class="tab-btn">탭 3</button>
+
+    <!-- 탭 내용 -->
+    <div class="tab-content">탭 1 내용</div>
+    <div class="tab-content">탭 2 내용</div>
+    <div class="tab-content">탭 3 내용</div>
+
+    <script>
+      // 탭 버튼과 탭 내용 요소 가져오기
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      // console.log(contents[0]);
+      // contents[0]은 첫 번째 탭 내용 요소를 가져온다.
+      // 인덱스(index)는 0부터 시작하며, []로 특정 위치의 요소에 접근한다.
+
+      // console.log(tabs);
+      // NodeList(3): 배열과 비슷한 형태로 세 개의 요소가 들어 있다.
+
+      tabs.forEach((tab, index) => {
+        // console.log(tab, index);
+        // tab: 현재 순회 중인 버튼 요소
+        // index: 현재 버튼의 인덱스 번호 (0, 1, 2)
+
+        tab.addEventListener("click", () => {
+          // 버튼 활성화 초기화
+          // 모든 버튼의 active 클래스를 제거하여 중복 활성화를 방지한다.
+          tabs.forEach((t) => {
+            // console.log(t); // 각 버튼 확인용
+            t.classList.remove("active");
+          });
+
+          // 내용 활성화 초기화
+          // 모든 탭 내용의 active 클래스를 제거한다.
+          contents.forEach((c) => {
+            c.classList.remove("active");
+          });
+
+          // 해당하는 탭 활성화
+          // 클릭한 버튼에 active 클래스를 추가한다.
+          tab.classList.add("active");
+
+          // 해당하는 내용 활성화
+          // contents[index];
+
+          // console.log(index); // 첫 번째 버튼 클릭 시 0
+          // console.log(contents[index]); // 첫 번째 버튼 클릭 시 contents[0]
+
+          // 클릭한 버튼의 index에 해당하는 탭 내용을 활성화한다.
+          contents[index].classList.add("active");
+        });
+      });
+
+      // HTML에 active 클래스를 넣지 않았을 때
+      // JavaScript에서 첫 번째 버튼과 내용을 초기 활성화하는 방법
+      tabs[0].classList.add("active");
+      contents[0].classList.add("active");
+    </script>
+  </body>
+</html>
