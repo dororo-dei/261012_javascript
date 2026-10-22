@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탭 메뉴와 상품 카드 리스트</title>
+
+    <style>
+      /* =========================
+         1. 초기화
+      ========================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      ul,
+      li {
+        list-style: none;
+      }
+
+      /* =========================
+         2. 탭 메뉴
+      ========================= */
+      .menu {
+        width: 50%;
+        max-width: 600px;
+        display: flex;
+        margin: 50px auto;
+        background-color: powderblue;
+      }
+
+      .menu-item {
+        /* 남은 공간을 각 메뉴가 균등하게 차지 */
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        transition: all 0.3s;
+      }
+
+      /* 마우스 호버 및 선택된 메뉴 */
+      .menu-item:hover,
+      .menu-item.active {
+        background-color: rgb(62, 153, 165);
+        cursor: pointer;
+      }
+
+      /* =========================
+         3. 카드 영역
+      ========================= */
+      .card-container {
+        width: 60%;
+        max-width: 700px;
+        margin: auto;
+      }
+
+      /* 기본적으로 모든 카드 목록 숨기기 */
+      .card {
+        display: none;
+        /* display: flex; */
+        gap: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+
+      /* active 클래스가 있는 카드 목록 표시 */
+      .card.active {
+        /* 카드 목록의 가로 배치를 유지하기 위해 flex 사용 */
+        display: flex;
+      }
+
+      /* 개별 상품 카드 */
+      .card li {
+        flex: 1;
+      }
+
+      .card img {
+        width: 100%;
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================
+         1. 탭 메뉴 영역
+    ========================= -->
+    <div class="menu" id="menu">
+      <!-- JavaScript로 탭 메뉴 출력 -->
+    </div>
+
+    <!-- =========================
+         2. 상품 카드 영역
+    ========================= -->
+    <div class="card-container" id="cardContainer">
+      <!-- JavaScript로 상품 카드 출력 -->
+    </div>
+
+    <script>
+      /* =========================
+         1. 더미 데이터
+      ========================= */
+      const menuData = [
+        {
+          title: "메뉴 1",
+          product: [
+            {
+              image: "../images/images/frame1.png",
+              name: "아메카노",
+              price: 6000,
+            },
+            {
+              image: "../images/images/frame2.png",
+              name: "카페라떼",
+              price: 6500,
+            },
+            {
+              image: "../images/images/frame3.png",
+              name: "바닐라라떼",
+              price: 7000,
+            },
+          ],
+        },
+        {
+          title: "메뉴 2",
+          product: [
+            {
+              image: "../images/images/frame3.png",
+              name: "카페라떼",
+              price: 6500,
+            },
+            {
+              image: "../images/images/frame4.png",
+              name: "초콜릿",
+              price: 5000,
+            },
+            {
+              image: "../images/images/frame1.png",
+              name: "아메카노",
+              price: 6000,
+            },
+          ],
+        },
+        {
+          title: "메뉴 3",
+          product: [
+            {
+              image: "../images/images/frame5.png",
+              name: "카페라떼",
+              price: 6500,
+            },
+            {
+              image: "../images/images/frame3.png",
+              name: "초콜릿",
+              price: 5000,
+            },
+            {
+              image: "../images/images/frame2.png",
+              name: "아메카노",
+              price: 6000,
+            },
+          ],
+        },
+      ];
+
+      /* =========================
+         2. HTML 요소 가져오기
+      ========================= */
+      const menu = document.querySelector("#menu");
+      const cardContainer = document.querySelector("#cardContainer");
+
+      /* =========================
+         3. 탭 메뉴 생성
+      ========================= */
+
+      // map() : 배열을 순회하여 새로운 배열 반환
+      // item : 현재 순회 중인 메뉴 객체
+      // index : 현재 메뉴의 인덱스 (0부터 시작)
+      // 삼항 연산자 : 첫 번째 메뉴에 active 클래스 추가
+      // join("") : 배열의 문자열을 쉼표 없이 연결
+
+      menu.innerHTML = menuData
+        .map((item, index) => {
+          // console.log(item, index);
+
+          return `
+            <div class="menu-item ${index === 0 ? "active" : ""}">
+              ${item.title}
+            </div>
+          `;
+        })
+        .join("");
+
+      /* =========================
+         4. 상품 카드 목록 생성
+      ========================= */
+
+      // 바깥쪽 map() : 메뉴별 카드 목록 생성
+      // 안쪽 map() : 각 메뉴의 상품 카드 생성
+      // toLocaleString() : 가격에 천 단위 구분 기호 추가
+      // 첫 번째 카드 목록에 active 클래스 추가
+
+      cardContainer.innerHTML = menuData
+        .map((item, index) => {
+          // console.log(item, index);
+
+          return `
+            <ul class="card ${index === 0 ? "active" : ""}">
+              ${item.product
+                .map((product) => {
+                  // console.log(product);
+
+                  return `
+                    <li>
+                      <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                      />
+                      <h2>${product.name}</h2>
+                      <p>
+                        가격: ${product.price.toLocaleString()}원
+                      </p>
+                    </li>
+                  `;
+                })
+                .join("")}
+            </ul>
+          `;
+        })
+        .join("");
+
+      /* =========================
+         5. 생성된 HTML 요소 가져오기
+      ========================= */
+
+      // JavaScript로 생성한 탭 메뉴와 카드 목록 선택
+      const menuItems = document.querySelectorAll(".menu-item");
+      const cards = document.querySelectorAll(".card");
+
+      // console.log(menuItems);
+      // console.log(cards);
+
+      /* =========================
+         6. 탭 전환 함수
+      ========================= */
+
+      // 전달받은 index에 해당하는 메뉴와 카드 활성화
+      function showCard(index) {
+        // console.log(index);
+
+        // 모든 탭 메뉴의 active 클래스 제거
+        menuItems.forEach((item) => {
+          // console.log(item);
+          item.classList.remove("active");
+        });
+
+        // 모든 카드 목록의 active 클래스 제거
+        cards.forEach((card) => {
+          // console.log(card);
+          card.classList.remove("active");
+        });
+
+        // 선택한 탭 메뉴와 같은 인덱스의 카드 목록 활성화
+        menuItems[index].classList.add("active");
+        cards[index].classList.add("active");
+      }
+
+      /* =========================
+         7. 탭 메뉴 클릭 이벤트
+      ========================= */
+
+      // 각 탭 메뉴에 클릭 이벤트 등록
+      menuItems.forEach((item, index) => {
+        // console.log(item, index);
+
+        item.addEventListener("click", () => {
+          // 클릭한 메뉴의 인덱스를 함수에 전달
+          showCard(index);
+        });
+      });
+    </script>
+  </body>
+</html>

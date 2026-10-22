@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for 03 — 중첩 반복문과 구구단</title>
+  </head>
+
+  <body>
+    <!-- 중첩 for 반복문 : 반복문 안에 또 다른 반복문을 사용하는 구조 -->
+
+    <script>
+      /* =========================
+         1. 구구단 2단 ~ 9단 출력
+      ========================= */
+
+      // 바깥쪽 for : 2단부터 9단까지 반복
+      // i : 현재 출력할 구구단의 단
+
+      for (let i = 2; i <= 9; i++) {
+        // 각 단의 제목 출력
+        document.write(`<h3>${i} 단</h3>`);
+
+        // 안쪽 for : 1부터 9까지 곱하기
+        // j : 현재 곱할 숫자
+
+        for (let j = 1; j <= 9; j++) {
+          // i * j : 현재 단과 곱할 숫자의 곱
+          document.write(`${i} X ${j} = ${i * j}<br>`);
+        }
+      }
+    </script>
+  </body>
+</html>

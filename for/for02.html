@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for 02 — 배열 순회와 HTML 출력</title>
+  </head>
+
+  <body>
+    <!-- 상품 목록 -->
+    <ul id="list">
+      <!-- js 출력 -->
+    </ul>
+
+    <script>
+      // 1. 상품 배열 만들기
+      const products = ["사과", "바나나", "포도", "딸기"];
+
+      // 2. HTML 요소 가져오기
+      const proList = document.querySelector("#list");
+
+      // 3. for 반복문으로 배열 출력
+      // i = 0 : 배열의 첫 번째 인덱스부터 시작
+      // i < products.length : 배열의 길이만큼 반복
+      // i++ : 반복할 때마다 인덱스 1 증가
+
+      for (let i = 0; i < products.length; i++) {
+        // console.log(i);
+
+        // console.log(products[3]); // index 번호 3 확인 즉, 딸기 확인
+
+        // products[i] : 현재 인덱스에 해당하는 배열 요소
+        // innerHTML += : 기존 HTML에 li 요소 추가
+        proList.innerHTML += `<li>${products[i]}</li>`;
+      }
+    </script>
+  </body>
+</html>
