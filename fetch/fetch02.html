@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch 02 - 상품 목록 출력</title>
+  </head>
+  <body>
+    <div id="result">
+      <!-- js출력 -->
+    </div>
+    <script>
+      fetch("product.json")
+        .then((res) => {
+          //   console.log(res);
+          return res.json();
+        })
+        .then((data) => {
+          // console.log(data);
+          //   const htmlEl = data.map().join("");
+          //   result.innerHTML = htmlEl
+          const result = document.querySelector("#result");
+          result.innerHTML = data
+            .map((item) => {
+              //   console.log(item);
+              return `
+             <div class="card">
+        <h3>상품명 :${item.name} </h3>
+        <p>가격 :${item.price} </p>
+       </div>
+            `;
+            })
+            .join("");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>
